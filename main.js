@@ -43,6 +43,9 @@ function prepareData(key) {
   var minPoints = points.map(function(p) {
     return { y: Math.min.apply(null, p.obj.runs), x: p.index, obj: p.obj }
   });
+  var maxPoints = points.map(function(p) {
+    return { y: Math.max.apply(null, p.obj.runs), x: p.index, obj: p.obj }
+  });
 
   var min = {
       label: "min",
@@ -52,9 +55,17 @@ function prepareData(key) {
       pointBorderWidth: 1
   }
 
+  var max = {
+      label: "max",
+      data: maxPoints,
+      fill: false,
+      borderDash: [5, 5],
+      pointBorderWidth: 1
+  }
+  
   return {
     labels: labels,
-    datasets: [median, min]
+    datasets: [median, min, max]
   }
 }
 
